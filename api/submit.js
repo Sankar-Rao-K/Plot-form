@@ -2,7 +2,7 @@
 //
 // Environment variables (Vercel -> Settings -> Environment Variables):
 //   RESEND_API_KEY       (required) your Resend API key
-//   TO_EMAIL             (optional) inbox that receives enquiries. Default: ddsexpoai@gmail.com
+//   TO_EMAIL             (optional) inbox that receives enquiries. Default: kandishankar023@gmail.com
 //   MAIL_FROM            (optional) e.g. "DDS Expo <enquiries@yourdomain.com>" (domain must be verified in Resend).
 //                        Default: Resend test sender, which can ONLY deliver to your own Resend account email.
 //   SEND_CUSTOMER_COPY   (optional) set to "true" to also email an acknowledgement to the customer.
@@ -125,7 +125,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Email service is not configured yet. Please try again later." });
   }
 
-  const to = (process.env.TO_EMAIL || "ddsexpoai@gmail.com").trim();
+  const to = (process.env.TO_EMAIL || "kandishankar023@gmail.com").trim();
   const from = (process.env.MAIL_FROM || TEST_SENDER).trim();
   const receivedAt = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" });
 

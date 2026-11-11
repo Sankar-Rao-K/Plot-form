@@ -11,7 +11,7 @@ Standalone enquiry form (React + Vite) with a Vercel serverless API that emails 
    | Name | Value |
    |---|---|
    | `RESEND_API_KEY` | your key from Resend (starts with `re_`) |
-   | `TO_EMAIL` | `ddsexpoai@gmail.com` (optional, this is the default) |
+   | `TO_EMAIL` | `kandishankar023@gmail.com` (optional, this is the default) |
 
 4. Deploy. If you add or change variables later, **Redeploy** (Deployments -> ... -> Redeploy).
 
@@ -19,7 +19,7 @@ Standalone enquiry form (React + Vite) with a Vercel serverless API that emails 
 
 Without `MAIL_FROM`, mail is sent from Resend's test address `onboarding@resend.dev`. Resend only delivers that to the **email address you registered your Resend account with**.
 
-- Registered Resend with `ddsexpoai@gmail.com` -> works as is.
+- Registered Resend with `kandishankar023@gmail.com` -> works as is.
 - Registered with another address -> either set `TO_EMAIL` to that address for now, or verify a domain you own in Resend (Domains) and set `MAIL_FROM` = `DDS Expo <enquiries@yourdomain.com>`.
 
 ## Optional environment variables
