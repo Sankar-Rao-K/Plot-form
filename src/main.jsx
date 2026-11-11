@@ -94,7 +94,7 @@ function App() {
                 </label>
                 <label className="text-field">
                   <span>Mobile number <b>*</b></span>
-                  <input required type="tel" inputMode="tel" pattern="[+]?[0-9 ()-]{10,16}"
+                  <input required type="tel" inputMode="tel" pattern="[-+0-9 ()]{10,16}"
                     autoComplete="tel" placeholder="Enter mobile number" value={form.phone}
                     onChange={(e) => update("phone", e.target.value)} />
                 </label>
