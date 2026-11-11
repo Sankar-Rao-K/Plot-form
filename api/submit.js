@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   const plotSize = clean(req.body?.plotSize, 40);
   const timeline = clean(req.body?.timeline, 40);
 
-  if (name.length < 2 || !/^[+]?[-0-9 ()]{10,16}$/.test(phone) ||
+  if (name.length < 2 || !/^\+?[0-9]{10,15}$/.test(phone) ||
       (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) ||
       !ALLOWED_BUDGETS.includes(budget) ||
       !ALLOWED_SIZES.includes(plotSize) ||
