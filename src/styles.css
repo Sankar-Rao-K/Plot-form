@@ -40,3 +40,5 @@ footer{text-align:center;border-top:1px solid #edf0ed;margin-top:23px;padding-to
 .success-panel{text-align:center;padding:62px 10px 58px}.success-icon{width:66px;height:66px;border-radius:50%;background:#eaf4eb;color:#4d8059;display:grid;place-items:center;margin:0 auto 20px}
 .success-panel .eyebrow{justify-content:center}.success-panel h1{font-size:34px;letter-spacing:-1.4px}.success-panel .intro{margin:0 auto 26px}
 @media(max-width:560px){.page-shell{padding:16px 10px}.form-card{padding:23px 20px 18px;border-radius:18px}.brand-row{padding-bottom:18px}.intro-block{padding:25px 0 21px}h1{font-size:38px}.input-grid{grid-template-columns:1fr;gap:12px}.full-width{grid-column:auto}.choices{grid-template-columns:1fr}.choice{min-height:42px}.field-group{margin-bottom:18px}.section-gap{margin-top:25px}.secure-tag{font-size:10px;padding:6px 8px}}
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}

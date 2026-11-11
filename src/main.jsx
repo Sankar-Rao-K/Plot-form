@@ -27,7 +27,7 @@ function ChoiceGroup({ label, name, options, value, onChange }) {
 
 function App() {
   const [form, setForm] = useState({
-    name: "", phone: "", email: "", budget: "", plotSize: "", timeline: ""
+    name: "", phone: "", email: "", budget: "", plotSize: "", timeline: "", website: ""
   });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
@@ -36,6 +36,12 @@ function App() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const digits = form.phone.replace(/\D/g, "");
+    if (!/^[+]?[0-9 ()-]+$/.test(form.phone.trim()) || digits.length < 10 || digits.length > 13) {
+      setError("Please enter a valid mobile number (10 digits).");
+      setStatus("error");
+      return;
+    }
     setStatus("loading");
     setError("");
     try {
@@ -47,7 +53,7 @@ function App() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Unable to submit your enquiry.");
       setStatus("success");
-      setForm({ name: "", phone: "", email: "", budget: "", plotSize: "", timeline: "" });
+      setForm({ name: "", phone: "", email: "", budget: "", plotSize: "", timeline: "", website: "" });
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
       setStatus("error");
@@ -85,6 +91,10 @@ function App() {
             </div>
 
             <form onSubmit={handleSubmit}>
+              <div className="hp" aria-hidden="true">
+                <label>Website <input tabIndex={-1} autoComplete="off" value={form.website}
+                  onChange={(e) => update("website", e.target.value)} /></label>
+              </div>
               <div className="section-heading"><span>01</span><div><h2>Your details</h2><p>How can we reach you?</p></div></div>
               <div className="input-grid">
                 <label className="text-field">
@@ -94,7 +104,7 @@ function App() {
                 </label>
                 <label className="text-field">
                   <span>Mobile number <b>*</b></span>
-                  <input required type="tel" inputMode="tel" pattern="[+]?[0-9]{10,15}"
+                  <input required type="tel" inputMode="tel" maxLength="20"
                     autoComplete="tel" placeholder="Enter mobile number" value={form.phone}
                     onChange={(e) => update("phone", e.target.value)} />
                 </label>

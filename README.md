@@ -1,34 +1,41 @@
 # DDS Expo Plot Enquiry Form
 
-A standalone, responsive customer enquiry form built with React + Vite and a Vercel serverless API. Form submissions are emailed to `ddsexpoai@gmail.com` through Resend.
+Standalone enquiry form (React + Vite) with a Vercel serverless API that emails every submission through Resend.
 
-## Run locally
+## Deploy (about 10 minutes)
 
-1. Install Node.js 18+.
-2. Run `npm install`.
-3. Create a Resend account at https://resend.com and create an API key.
-4. Create a `.env` file in the project root:
+1. Upload this folder to a GitHub repository (do **not** upload `.env` or `node_modules`).
+2. Vercel -> **Add New -> Project** -> import the repo. Framework: Vite (auto-detected).
+3. Before clicking Deploy, open **Environment Variables** and add:
 
-   ```env
-   RESEND_API_KEY=re_your_api_key
-   ```
+   | Name | Value |
+   |---|---|
+   | `RESEND_API_KEY` | your key from Resend (starts with `re_`) |
+   | `TO_EMAIL` | `ddsexpoai@gmail.com` (optional, this is the default) |
 
-5. Run the frontend with `npm run dev`.
+4. Deploy. If you add or change variables later, **Redeploy** (Deployments -> ... -> Redeploy).
 
-For local end-to-end testing, use Vercel CLI (`npm i -g vercel`) and `vercel dev` after adding the environment variable in `.env.local` (or importing it into your shell). Vite's dev server alone does not run the `/api` function.
+## Sender address: read this
 
-## Deploy to Vercel
+Without `MAIL_FROM`, mail is sent from Resend's test address `onboarding@resend.dev`. Resend only delivers that to the **email address you registered your Resend account with**.
 
-1. Upload this project to a GitHub repository.
-2. In Vercel, choose **Add New → Project** and import that repository.
-3. Framework preset: **Vite**. Build command: `npm run build`. Output directory: `dist`.
-4. In **Project → Settings → Environment Variables**, add:
-   - `RESEND_API_KEY` = your Resend API key
-   - Optional `MAIL_FROM` = a sender identity on a domain verified in Resend, e.g. `DDS Expo <enquiries@yourdomain.com>`
-5. Redeploy after adding environment variables.
+- Registered Resend with `ddsexpoai@gmail.com` -> works as is.
+- Registered with another address -> either set `TO_EMAIL` to that address for now, or verify a domain you own in Resend (Domains) and set `MAIL_FROM` = `DDS Expo <enquiries@yourdomain.com>`.
 
-## Email sender setup (important)
+## Optional environment variables
 
-The API currently uses Resend's testing sender `onboarding@resend.dev`. Resend's testing sender is restricted to the email address associated with your Resend account. To deliver enquiries to `ddsexpoai@gmail.com`, make sure that address is permitted by your Resend account's test-mode rules, or verify a domain you control in Resend and set `MAIL_FROM` to an address on that verified domain. Do not put the Resend API key in frontend code.
+- `MAIL_FROM` - verified-domain sender (see above).
+- `SEND_CUSTOMER_COPY` = `true` - also email the customer an acknowledgement (needs a verified domain in `MAIL_FROM`).
 
-The recipient is fixed server-side to `ddsexpoai@gmail.com`. Change it in `api/submit.js` only if the business inbox changes.
+## Troubleshooting
+
+Vercel -> your project -> **Logs** (filter: `/api/submit`). Failed sends print Resend's exact reason (e.g. "You can only send testing emails to your own email address").
+Also check the Resend dashboard -> **Emails** and the Gmail spam folder.
+
+## Spam protection
+
+Hidden honeypot field + server-side validation of every field and option.
+
+## Local testing
+
+`npm install`, then `vercel dev` (Vite alone does not run `/api`). Put `RESEND_API_KEY=...` in `.env.local`.
