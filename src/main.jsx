@@ -98,14 +98,6 @@ function App() {
           <span className="brush yellow"><small>in</small> <b>3</b> <strong>Years</strong></span>
         </div>
 
-        <ul className="highlights">
-          {highlights.map(({ Icon, lines, tone }) => (
-            <li key={lines.join(" ")} className={tone}>
-              <Icon size={30} strokeWidth={2.2} />
-              <span>{lines.map((l) => <i key={l}>{l}</i>)}</span>
-            </li>
-          ))}
-        </ul>
 
         <div className="form-panel" id="form-panel">
           {status === "success" ? (
@@ -185,6 +177,14 @@ function App() {
             </>
           )}
         </div>
+        <ul className="highlights">
+          {highlights.map(({ Icon, lines, tone }) => (
+            <li key={lines.join(" ")} className={tone}>
+              <Icon size={30} strokeWidth={2.2} />
+              <span>{lines.map((l) => <i key={l}>{l}</i>)}</span>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );
